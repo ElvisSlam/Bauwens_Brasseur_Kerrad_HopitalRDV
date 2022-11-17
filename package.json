@@ -16,6 +16,7 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
+        "scss": "node-sass -watch scss -o css",
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
