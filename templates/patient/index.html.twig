@@ -12,12 +12,12 @@
     <h1>Bonjour NOM_PATIENT</h1>
     <br>
     <p>Veuillez choisir une fonctionnalité dans la liste :</p>
-    <form action="{{ url }}demande">
-        <input type="submit" value="Demander un rendez-vous">
-    </form>
-    <br>
-    <form action="{{ url }}consult">
-        <input type="submit" value="Consulter vos rendez-vous">
-    </form>
+    <a href="{{ url }}demande">
+        <input class="bouton-choix-fonction" type="button" value="Demander un rendez-vous">
+    </a>
+    <br><br>
+    <a href="{{ url }}consult">
+        <input class="bouton-choix-fonction" type="button" value="Consulter vos rendez-vous">
+    </a>
 </div>
 {% endblock %}

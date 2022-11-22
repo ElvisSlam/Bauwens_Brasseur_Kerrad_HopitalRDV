@@ -12,9 +12,9 @@
     <h1>Bonjour NOM_ASSISTANT</h1>
     <br>
     <p>Veuillez choisir une fonctionnalité dans la liste :</p>
-    <form action="{{ url }}validation">
-        <input type="submit" value="Valider un rendez-vous">
-    </form>
+    <a href"{{ url }}validation">
+        <input class="bouton-choix-fonction" type="button" value="Valider un rendez-vous">
+    </a>
     <br>
 </div>
 <a href="{{path('assistant_consultation_rdv')}}">
