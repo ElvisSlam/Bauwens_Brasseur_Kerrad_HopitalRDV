@@ -9,7 +9,13 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Bonjour NOM_ASSISTANT</h1>
+    <br>
+    <p>Veuillez choisir une fonctionnalité dans la liste :</p>
+    <form action="{{ url }}validation">
+        <input type="submit" value="Valider un rendez-vous">
+    </form>
+    <br>
 </div>
 <a href="{{path('assistant_consultation_rdv')}}">
     <input class="bouton-choix-fonction" type="button" value="Consultez mes rendez-vous"></input>
