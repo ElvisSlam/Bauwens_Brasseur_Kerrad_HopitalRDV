@@ -24,4 +24,12 @@ class AssistantController extends AbstractController
             'controller_name' => 'Validation',
         ]);
     }
+
+    #[Route('/assistant/consultation', name: 'assistant_consultation_rdv')]
+    public function medecinconsult(): Response
+    {
+        return $this->render('assistant/fonction/consultationrdv.html.twig', [
+            'controller_name' => 'AssistantController',
+        ]);
+    }
 }
