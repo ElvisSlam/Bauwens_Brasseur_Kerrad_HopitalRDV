@@ -15,4 +15,12 @@ class MedecinController extends AbstractController
             'controller_name' => 'MedecinController',
         ]);
     }
+
+    #[Route('/medecin/consultation', name: 'medecin_consultation_rdv')]
+    public function medecinconsult(): Response
+    {
+        return $this->render('medecin/fonction/consultationrdv.html.twig', [
+            'controller_name' => 'MedecinController',
+        ]);
+    }
 }

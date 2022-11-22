@@ -10,11 +10,8 @@
 
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/sio2022/Hopital_RDV/src/Controller/AssistantController.php'|file_link(0) }}">src/Controller/AssistantController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/sio2022/Hopital_RDV/templates/assistant/index.html.twig'|file_link(0) }}">templates/assistant/index.html.twig</a></code></li>
-    </ul>
 </div>
+<a href="{{path('assistant_consultation_rdv')}}">
+    <input class="bouton-choix-fonction" type="button" value="Consultez mes rendez-vous"></input>
+</a>
 {% endblock %}
