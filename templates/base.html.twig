@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Welcome!
+			Hopital Bodrum | {% block title %}
 			{% endblock %}
 		</title>
 		<link
@@ -36,9 +36,10 @@
 							<li class="nav-item">
 								<a class="nav-link" href="/login">Se Connecter</a>
 							</li>
-							 <li class="nav-item">
-							<a class="nav-link" href="/register">S'inscrire</a>
-						</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/register">S'inscrire</a>
+							</li>
+							{% block navbar %}{% endblock %}
 						</ul>
 						
 					</div>

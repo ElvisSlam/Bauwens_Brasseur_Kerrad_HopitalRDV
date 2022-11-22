@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PatientController!{% endblock %}
+{% block title %}Menu Patient{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,15 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/sio2022/Hopital_RDV/src/Controller/PatientController.php'|file_link(0) }}">src/Controller/PatientController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/sio2022/Hopital_RDV/templates/patient/index.html.twig'|file_link(0) }}">templates/patient/index.html.twig</a></code></li>
-    </ul>
+    <h1>Bonjour NOM_PATIENT</h1>
+    <br>
+    <p>Veuillez choisir une fonctionnalité dans la liste :</p>
+    <form action="{{ url }}demande">
+        <input type="submit" value="Demander un rendez-vous">
+    </form>
+    <br>
+    <form action="{{ url }}consult">
+        <input type="submit" value="Consulter vos rendez-vous">
+    </form>
 </div>
 {% endblock %}
