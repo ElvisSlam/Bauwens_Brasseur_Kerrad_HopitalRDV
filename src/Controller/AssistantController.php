@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use App\Entity\Assistant;
+use Doctrine\Persistence\ManagerRegistry;
+
 class AssistantController extends AbstractController
 {
     #[Route('/assistant', name: 'app_assistant')]
@@ -30,6 +33,18 @@ class AssistantController extends AbstractController
     {
         return $this->render('assistant/fonction/consultationrdv.html.twig', [
             'controller_name' => 'AssistantController',
+        ]);
+    }
+
+    #[Route('/assistant/consultation', name: 'assistant_consultation_rdv')]
+    public function getLesAdherents(ManagerRegistry $doctrine): Response
+    {
+        $repository = $doctrine->getRepository(Adherent::class);
+
+        $RDVS = $repository->findAll();
+
+        return $this->render('assistant/fonction/consultationrdv.html.twig', [
+            'RDVS' => $RDVS,
         ]);
     }
 }

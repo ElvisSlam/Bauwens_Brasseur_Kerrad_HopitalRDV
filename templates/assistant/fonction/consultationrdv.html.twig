@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AssistantController!
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h1>Bonjour NOM_ASSISTANT</h1>
+		<br>
+		<p>Veuillez choisir une fonctionnalité dans la liste :</p>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Numero du RDV</th>
+					<th scope="col">Medecin</th>
+					<th scope="col">Patient</th>
+					<th class="text-end" scope="col">date</th>
+                    <th class="text-end" scope="col">durée</th>
+					<th scope="col" class="text-center">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				{% for rdv in RDVS %}
+					<tr>
+						<td class="align-middle" scope="row">
+							<a target="_blank" href=""></a>
+						</td>
+						<td class="align-middle" scope="row">
+							<span class="badge bg-secondary"></span>
+						</td>
+						<td class="align-middle"></td>
+						<td class="align-middle">
+							<span class="badge bg-danger"></span>
+						</td>
+                        <td class="align-middle text-end">
+							<span class="badge bg-danger"></span>
+						</td>
+						<td class="align-middle">
+							<div class="row">
+								
+									<div class="col-6">
+										<div class="d-grid ">
+											<button class="btn btn-danger" type="button" >
+												Refuser
+											</button>
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="d-grid">
+											<button class="btn btn-success " type="button" >
+												Valider
+											</button>
+										</div>
+									</div>
+
+									<div class="col">
+										<div class="d-grid">
+											<button class="btn btn-secondary disabled " type="button">
+												Aucune action possible
+											</button>
+										</div>
+									</div>
+
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endblock %}
