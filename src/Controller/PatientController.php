@@ -8,11 +8,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use App\Entity\Patient;
+use App\Entity\RDV;
 use App\Entity\Statut;
+use App\Form\DemandeRDVType;
+use Symfony\Component\HttpFoundation\Request;
 
+#[Route('/patient')]
 class PatientController extends AbstractController
 {
-    #[Route('/patient', name: 'app_patient')]
+    #[Route('/', name: 'app_patient')]
     public function index(): Response
     {
         return $this->render('patient/index.html.twig', [
@@ -21,10 +25,10 @@ class PatientController extends AbstractController
         ]);
     }
 
-    #[Route('/patient/consult', name: 'patient_consult')]
+    #[Route('/consult', name: 'patient_consult')]
     public function patientConsultRdv(ManagerRegistry $doctrine): Response
     {
-        $repository=$doctrine->getRepository(Patient::class);
+        $repository=$doctrine->getRepository(RDV::class);
         $lesPatients=$repository->findAll();
         return $this->render('patient/consult/index.html.twig', [
             'controller_name' => 'Consultation RDV',
@@ -32,11 +36,25 @@ class PatientController extends AbstractController
         ]);
     }
 
-    #[Route('/patient/demande', name: 'patient_demande')]
-    public function patientDemandeRdv(ManagerRegistry $doctrine): Response
+    #[Route('/demande', name: 'patient_demande')]
+    public function patientDemandeRdv(ManagerRegistry $doctrine, Request $request): Response
     {
+        $em = $doctrine->getManager();
+        $laConsul = new RDV;
+        $form = $this->createForm(DemandeRDVType::class, $laConsul);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $laConsul = $form->getData();
+            $em->persist($laConsul);
+            $em->flush();
+            return $this->redirectToRoute('app_patient');
+        }
+
         return $this->render('patient/demande/index.html.twig', [
             'controller_name' => 'Demande RDV',
+            'form' => $form->createView(),
         ]);
     }
+
+    
 }

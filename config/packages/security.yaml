@@ -33,7 +33,7 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/patient, roles: ROLE_PATIENT }
+        #- { path: ^/patient, roles: ROLE_PATIENT }
         - { path: ^/medecin, roles: ROLE_MEDECIN }
         - { path: ^/assistant, roles: ROLE_ASSISTANT }
 

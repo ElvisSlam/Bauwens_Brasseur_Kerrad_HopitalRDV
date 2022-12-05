@@ -46,7 +46,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('roles',ChoiceType::class,[
                 'choices'=>array(
-                'admin'=>'ROLE_ADMIN','user'=>'ROLE_USER',
+                'admin'=>'ROLE_ADMIN',
                 'patient'=>'ROLE_PATIENT','medecin'=>'ROLE_MEDECIN',
                 'assistant'=>'ROLE_ASSISTANT'
             ),
