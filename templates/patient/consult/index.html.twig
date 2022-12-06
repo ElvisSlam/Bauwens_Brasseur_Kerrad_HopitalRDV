@@ -32,15 +32,16 @@
 				</tr>
 			</thead>
 			<tbody>
+			{{app.user.userIdentifier}}
 				{% for patient in lesPatients %}
 					<tr>
-						<td class="align-middle" scope="row-4">{{patient.id}}</td>
-						{% if patient %}{% endif %}
+
+						<td class="align-middle" scope="row-4"></td>
 						<td class="align-middle" scope="row-4">{{patient.getMedecin.getNom}}</td>
 						<td class="align-middle" scope="row-4">{{patient.getStatut}}</td>
 						<td class="align-middle" scope="row-4">{{patient.date|date('Y-m-d')}}</td>
-                        <td class="align-middle" scope="row-4">{{patient.getHeure|date('h:i:s')}}</td>
-                        <td class="align-middle" scope="row-4">{{patient.getDuree|date('i:s')}}</td>
+						<td class="align-middle" scope="row-4">{{patient.getHeure|date('H:i:s')}}</td>
+						<td class="align-middle" scope="row-4">{{patient.getDuree|date('i:s')}}</td>
 						<td class="align-middle">
 							<div class="row">
 								<div class="col">
@@ -55,8 +56,8 @@
 							</td>
 						</td>
 					</tr>
-				</li>
+				</tr>
 			</tbody>
-		</td>
-	</tr>
-</td></tbody></li></td>{% endfor %}</tbody></tr></div></div>{% endblock %}
+		</li>
+	</tbody>
+</td></tr></td></tbody></li></td>{% endfor %}</tbody></tr></div> </div>{% endblock %}

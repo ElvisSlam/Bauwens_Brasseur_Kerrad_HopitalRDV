@@ -5,10 +5,7 @@ security:
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         # used to reload user from session & other features (e.g. switch_user)
-        app_user_provider:
-            entity:
-                class: App\Entity\User
-                property: email
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -33,7 +30,7 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/profile, roles: ROLE_USER }
-        #- { path: ^/patient, roles: ROLE_PATIENT }
+        - { path: ^/patient, roles: ROLE_PATIENT }
         - { path: ^/medecin, roles: ROLE_MEDECIN }
         - { path: ^/assistant, roles: ROLE_ASSISTANT }
 
