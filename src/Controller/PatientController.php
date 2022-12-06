@@ -39,8 +39,12 @@ class PatientController extends AbstractController
     #[Route('/demande', name: 'patient_demande')]
     public function patientDemandeRdv(ManagerRegistry $doctrine, Request $request): Response
     {
+        $repository=$doctrine->getRepository(Statut::class);
+        $statut=$repository->find(1);
         $em = $doctrine->getManager();
         $laConsul = new RDV;
+        $laConsul->setPatient($this->getUser());
+        $laConsul->setStatut($statut);
         $form = $this->createForm(DemandeRDVType::class, $laConsul);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
