@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\Assistant;
+use App\Entity\Statut;
 use App\Entity\RDV;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -41,7 +42,7 @@ class AssistantController extends AbstractController
         ]);
     }
 
-    #[Route('/assistant/validation', name: 'app_assistant')]
+    #[Route('/assistant/validation', name: 'assistant_validation')]
     public function validationRDV(ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(RDV::class);
@@ -50,6 +51,18 @@ class AssistantController extends AbstractController
             'controller_name' => 'AssistantController',
             'url' => 'assistant/',
             'rdvs' => $rdvs,
+        ]);
+    }
+
+    #[Route('/assistant/modifstatut', name: 'assistant_modifstatut')]
+    public function modifStatut(ManagerRegistry $doctrine, int $id): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $rdv = $entityManager->getRepository(RDV::class)->find($id);
+
+        return $this->render('assistant/validation/index.html.twig', [
+            'controller_name' => 'AssistantController',
+            'url' => 'assistant/',
         ]);
     }
 }
