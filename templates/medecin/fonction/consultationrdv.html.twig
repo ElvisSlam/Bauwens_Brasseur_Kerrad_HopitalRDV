@@ -23,7 +23,6 @@
 			{% for rdv in medecin.getRDVs %}
 				{% if app.user.getId == rdv.getMedecin.getId %}
             	<tr>
-	
                 	<td scope="row-4">{{ rdv.getId }}</td>
 					<td scope="row-4">{{ rdv.getPatient.getNom}}</td>
 					<td scope="row-4">{{ rdv.getDate|date("y-m-d") }}</td>

@@ -10,6 +10,7 @@ use App\Entity\Assistant;
 use App\Entity\Statut;
 use App\Entity\RDV;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bridge\Twig\Extension\RoutingExtension;
 
 class AssistantController extends AbstractController
 {
@@ -51,18 +52,6 @@ class AssistantController extends AbstractController
             'controller_name' => 'AssistantController',
             'url' => 'assistant/',
             'rdvs' => $rdvs,
-        ]);
-    }
-
-    #[Route('/assistant/modifstatut', name: 'assistant_modifstatut')]
-    public function modifStatut(ManagerRegistry $doctrine, int $id): Response
-    {
-        $entityManager = $doctrine->getManager();
-        $rdv = $entityManager->getRepository(RDV::class)->find($id);
-
-        return $this->render('assistant/validation/index.html.twig', [
-            'controller_name' => 'AssistantController',
-            'url' => 'assistant/',
         ]);
     }
 }
