@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Medecin;
 use App\Entity\RDV;
 use App\Repository\MedecinRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -24,7 +25,10 @@ class DemandeRDVType extends AbstractType
             ->add('medecin', EntityType::class, array(
                 'class' => Medecin::class,
                 'placeholder' => "Veuillez choisir un médecin",
-                'query_builder' => function(MedecinRepository $medecinRepo) {
+                'query_builder' => function(MedecinRepository $medecinRepo, ManagerRegistry $doctrine) {
+                    $repository=$doctrine->getRepository(Medecin::class);
+                    $lesMedecin=$repository->findAll();
+
                     return $medecinRepo->createQueryBuilder('m');   
                 }
             )
