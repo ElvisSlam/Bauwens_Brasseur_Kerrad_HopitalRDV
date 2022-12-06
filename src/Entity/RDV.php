@@ -108,4 +108,11 @@ class RDV
 
         return $this;
     }
+
+    public function getIdPatient(): ?int
+    {
+        $patient = $this->patient;
+        $id = $patient->getId();
+        return $id;
+    }
 }

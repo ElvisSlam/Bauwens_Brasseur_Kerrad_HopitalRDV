@@ -9,6 +9,30 @@
 </style>
 
 <div class="example-wrapper">
+    <h1 style="text-decoration:underline">Validation des rendez-vous</h1>
+    <br>
     <p>Liste des rendez-vous :</p>
+    <table>
+        <tr>
+            <th>Nom du patient</th>
+            <th>Prénom du patient</th>
+            <th>Nom du médecin</th>
+            <th>Date demandée</th>
+            <th>Heure demandée</th>
+            <th>Durée</th>
+        </tr>
+        {% for rdv in rdvs %}
+            <tr>
+            {% if rdv.getStatut.getId == 1 %}
+                <td>{{ rdv.getPatient.getNom }}</td>
+                <td>{{ rdv.getPatient.getPrenom }}</td>
+                <td>{{ rdv.getMedecin.getNom }}</td>
+                <td>{{ rdv.getDate|date('d-m-Y') }}</td>
+                <td>{{ rdv.getHeure|date('h:i:s', false) }}</td>
+                <td>{{ rdv.getDuree|date('h:i:s', false) }}</td>
+            {% endif %} 
+            </tr>
+        {% endfor %}
+    </table>
 </div>
 {% endblock %}
