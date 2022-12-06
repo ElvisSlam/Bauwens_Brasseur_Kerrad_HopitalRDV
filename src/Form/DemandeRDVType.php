@@ -25,18 +25,7 @@ class DemandeRDVType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add(
-                'patient',
-                EntityType::class,
-                array(
-                    'class' => User::class,
-                    'query_builder' => function (UserRepository $userRepo) {
-                        return $userRepo->createQueryBuilder('u')
-                            ->where('u.roles LIKE :roles')
-                            ->setParameter('roles', '%"ROLE_MEDECIN"%');
-                    }
-                )
-            )
+           
             ->add(
                 'medecin',
                 EntityType::class,
@@ -55,19 +44,6 @@ class DemandeRDVType extends AbstractType
             ->add('duree', TimeType::class, array(
                 'empty_data' => "00:00:00",
             ))
-            ->add(
-                'statut',
-                EntityType::class,
-                array(
-                    'class' => Statut::class,
-                    'query_builder' => function (StatutRepository $statutRepository) {
-                        return $statutRepository->createQueryBuilder('s')
-                            ->where('s.libelle LIKE :libelle')
-                            ->setParameter('libelle', 'demandé');
-                    }
-                )
-
-            )
             ->add('save', SubmitType::class, array('label' => 'Enregistrer'));
     }
 

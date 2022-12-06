@@ -1,55 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello IndicationController!
-{% endblock %}
+{% block title %}Hello MedecinController!{% endblock %}
 
 {% block body %}
 <style>
-	.example-wrapper {
-		margin: 1em auto;
-		max-width: 800px;
-		width: 95%;
-		font: 18px / 1.5 sans-serif;
-	}
-	.example-wrapper code {
-		background: #F5F5F5;
-		padding: 2px 6px;
-	}
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
 <div class="example-wrapper">
-	<div class="row">
-
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">id</th>
-					<th scope="col">Medecin</th>
+    <h1 style="text-decoration:underline">Liste des rendez-vous :</h1>
+    <br>
+    <p></p>
+    <table class="table">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nom du patient</th>
+            <th scope="col">Date</th>
+            <th scope="col">Heure</th>
+        </tr>
+        {% for medecin in lesMedecin %}
+			{% for rdv in medecin.getRDVs %}
+				{% if app.user.getId == rdv.getMedecin.getId %}
+            	<tr>
 	
-			</thead>
-			<tbody>
-				{% for medecin in lesMedecin %}
-					<tr>
-						<td class="align-middle" scope="row-4">{{medecin.id}}</td>
-                        {% for role in medecin.getRoles %}
-                            <td class="align-middle" scope="row-4">{{role}}</td>
-                        {% endfor %}
-						<td class="align-middle">
-							<div class="row">
-								<div class="col">
-									<div class="d-grid">
-										<a href=>
-											<button type="button" class="btn btn-success">
-												Voir en detail
-											</button>
-										</a>
-									</div>
-								</div>
-							</td>
-						</td>
-					</tr>
-				</li>
-			</tbody>
-		</td>
-	</tr>
-</td></tbody></li></td>{% endfor %}</tbody></tr></div></div>{% endblock %}
+                	<td scope="row-4">{{ rdv.getId }}</td>
+					<td scope="row-4">{{ rdv.getPatient.getNom}}</td>
+					<td scope="row-4">{{ rdv.getDate|date("y-m-d") }}</td>
+					<td scope="row-4">{{ rdv.getHeure|date("H:i:s") }}</td>
+            
+            	</tr>
+				{% endif %}
+			{% endfor %}
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
