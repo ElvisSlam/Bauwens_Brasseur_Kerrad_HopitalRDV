@@ -26,11 +26,11 @@ class MedecinController extends AbstractController
     {
 
         $repository=$doctrine->getRepository(Medecin::class);
-        $lesPatients=$repository->findAll();
+        $lesMedecin=$repository->findAll();
             
         return $this->render('medecin/fonction/consultationrdv.html.twig', [
             'controller_name' => 'MedecinController',
-            'lesMedecin' => $lesPatients,
+            'lesMedecin' => $lesMedecin,
         ]);
     }
 }
