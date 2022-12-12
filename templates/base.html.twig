@@ -27,58 +27,160 @@
 			padding: 2px 6px;
 		}
 	</style>
+
 	<body>
-		<div class="example-wrapper ">
-			<nav class="navbar navbar-expand-lg bg-light">
-				<div class="container-fluid">
-					<a class="navbar-brand" href="#"></a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="/">Accueil</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="/login">Se Connecter</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="/register">S'inscrire</a>
-							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									Menu
-								</a>
-								<ul class="dropdown-menu">
-									<li>
-										<a class="dropdown-item" href="">Action</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href="">Another action</a>
-									</li>
-									<li><hr class="dropdown-divider"></li>
-									<li>
-										<a class="dropdown-item" href="/register">S'inscrire</a>
-									</li>
-								</ul>
-							</li>
+		{% if app.user %}
+			{% for role in app.user.getRoles %}
+				{% if role is same as('ROLE_PATIENT') %}
+					<div class="example-wrapper">
+						<nav class="navbar navbar-expand-lg bg-light">
+							<div class="container-fluid">
+								<a class="navbar-brand" href="#"></a>
+								<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+									<span class="navbar-toggler-icon"></span>
+								</button>
+								<div class="collapse navbar-collapse" id="navbarSupportedContent">
+									<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+										<li class="nav-item">
+											<a class="nav-link active" aria-current="page" href="/">Accueil</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="/login">demande RDV</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="/register">Voir ses RDV</a>
+										</li>
+									</ul>
 
-							{% block navbar %}{% endblock %}
-						</ul>
+								</div>
+							</div>
+						</nav>
 
-					</div>
-				</div>
-			</nav>
-			<div class="example-wrapper">
-				<h1></h1>
-			</div>
+				{% elseif role is same as('ROLE_MEDECIN') %}
+						<div class="example-wrapper">
+							<nav class="navbar navbar-expand-lg bg-light">
+								<div class="container-fluid">
+									<a class="navbar-brand" href="#"></a>
+									<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+										<span class="navbar-toggler-icon"></span>
+									</button>
+									<div class="collapse navbar-collapse" id="navbarSupportedContent">
+										<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+											<li class="nav-item">
+												<a class="nav-link active" aria-current="page" href="/">Accueil</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="/login">MEDECIn</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="/register">medeicn2</a>
+											</li>
+										</ul>
+
+									</div>
+								</div>
+							</nav>
 
 
-			{% block body %}{% endblock %}
-			{% block javascripts %}
+				{% elseif role is same as('ROLE_ASSISTANT') %}
+							<div class="example-wrapper">
+								<nav class="navbar navbar-expand-lg bg-light">
+									<div class="container-fluid">
+										<a class="navbar-brand" href="#"></a>
+										<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+											<span class="navbar-toggler-icon"></span>
+										</button>
+										<div class="collapse navbar-collapse" id="navbarSupportedContent">
+											<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+												<li class="nav-item">
+													<a class="nav-link active" aria-current="page" href="/">Accueil</a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" href="/login">Assistat</a>
+												</li>
+												<li class="nav-item">
+													<a class="nav-link" href="/register">assistnant</a>
+												</li>
+											</ul>
+
+										</div>
+									</div>
+								</nav>
+				{% elseif role is same as('ROLE_ADMIN') %}
+								<div class="example-wrapper">
+									<nav class="navbar navbar-expand-lg bg-light">
+										<div class="container-fluid">
+											<a class="navbar-brand" href="#"></a>
+											<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+												<span class="navbar-toggler-icon"></span>
+											</button>
+											<div class="collapse navbar-collapse" id="navbarSupportedContent">
+												<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+													<li class="nav-item">
+														<a class="nav-link active" aria-current="page" href="/">Accueil</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" href="/login">admin</a>
+													</li>
+													<li class="nav-item">
+														<a class="nav-link" href="/register">amin</a>
+													</li>
+												</ul>
+
+											</div>
+										</div>
+									</nav>
+				{% endif %}
+						{% endfor %}		
+		{% else %}
+				<div class="example-wrapper ">
+					<nav class="navbar navbar-expand-lg bg-light">
+						<div class="container-fluid">
+							<a class="navbar-brand" href="#"></a>
+							<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+								<span class="navbar-toggler-icon"></span>
+							</button>
+							<div class="collapse navbar-collapse" id="navbarSupportedContent">
+								<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+										<li class="nav-item">
+											<a class="nav-link active" aria-current="page" href="/">Accueil</a>
+										</li>
+										<li class="nav-item">
+												<a class="nav-link" href="/login">Se Connecter</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="/register">S'inscrire</a>
+										</li>
+										<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+												Menu
+										</a>
+										<ul class="dropdown-menu">
+											<li>
+												<a class="dropdown-item" href="">Action</a>
+										</li>
+										<li>
+											<a class="dropdown-item" href="">Another action</a>
+										</li>
+										<li><hr class="dropdown-divider"></li>
+										<li>
+											<a class="dropdown-item" href="/register">S'inscrire</a>
+										</li>
+										</ul>
+										</li>
+
+										{% block navbar %}{% endblock %}
+										</ul>
+										</div>
+										</div>
+									</nav>
+									<div class="example-wrapper">
+										<h1></h1>
+									</div>
+		{% endif %}
+		{% block body %}{% endblock %}
+		{% block javascripts %}
 				{{ encore_entry_script_tags('app') }}
-			{% endblock %}
-		</body>
+		{% endblock %}
 	</body>
 </html>
