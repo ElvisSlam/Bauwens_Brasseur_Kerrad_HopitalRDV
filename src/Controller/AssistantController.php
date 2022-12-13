@@ -24,22 +24,17 @@ class AssistantController extends AbstractController
     }
 
     #[Route('/assistant/consultation', name: 'assistant_consultation_rdv')]
-    public function medecinconsult(): Response
+    public function getLesRDVs(ManagerRegistry $doctrine): Response
     {
-        return $this->render('assistant/fonction/consultationrdv.html.twig', [
-            'controller_name' => 'AssistantController',
-        ]);
-    }
+        $repository = $doctrine->getRepository(RDV::class);
 
-    #[Route('/assistant/consultation', name: 'assistant_consultation_rdv')]
-    public function getLesAdherents(ManagerRegistry $doctrine): Response
-    {
-        $repository = $doctrine->getRepository(Adherent::class);
-
-        $RDVS = $repository->findAll();
+        $rdvs = $repository->findBy(
+            [],
+            ['date' => 'DESC'],
+        );
 
         return $this->render('assistant/fonction/consultationrdv.html.twig', [
-            'RDVS' => $RDVS,
+            'rdvs' => $rdvs,
         ]);
     }
 
