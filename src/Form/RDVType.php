@@ -6,6 +6,11 @@ use App\Entity\RDV;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\User;
+use App\Repository\UserRepository;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 
 class RDVType extends AbstractType
 {
@@ -14,10 +19,18 @@ class RDVType extends AbstractType
         $builder
             ->add('date')
             ->add('heure')
-            ->add('duree')
-            ->add('patient')
-            ->add('medecin')
-            ->add('statut')
+            ->add('duree' , TimeType::class)
+            ->add('medecin', EntityType::class,
+            array(
+                'class' => User::class,
+                'placeholder' => "Veuillez choisir un médecin",
+                'query_builder' => function (UserRepository $userRepo) {
+                    return $userRepo->createQueryBuilder('u')
+                        ->where('u.roles LIKE :roles')
+                        ->setParameter('roles', '%"ROLE_MEDECIN"%');
+                }
+            ))
+            ->add('save', SubmitType::class, array('label' => 'Enregistrer'));;
         ;
     }
 

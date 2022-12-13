@@ -11,6 +11,7 @@ use App\Entity\Patient;
 use App\Entity\RDV;
 use App\Entity\Statut;
 use App\Form\DemandeRDVType;
+use App\Form\RDVType;
 use Symfony\Component\HttpFoundation\Request;
 
 #[Route('/patient')]
@@ -29,10 +30,22 @@ class PatientController extends AbstractController
     public function patientConsultRdv(ManagerRegistry $doctrine): Response
     {
         $repository=$doctrine->getRepository(RDV::class);
-        $lesPatients=$repository->findAll();
+        $user = $this->getUser();
+        $lesPatients=$repository->findBy(array('patient' => $user));
         return $this->render('patient/consult/index.html.twig', [
             'controller_name' => 'Consultation RDV',
             'lesPatients' => $lesPatients,
+        ]);
+    }
+
+    #[Route('/consult/{id}', name: 'patient_laconsul')]
+    public function patientRdv(ManagerRegistry $doctrine, $id): Response
+    {
+        $repository=$doctrine->getRepository(RDV::class);
+        $leRdv=$repository->find($id);
+        return $this->render('patient/consult/detail.html.twig', [
+            'controller_name' => 'Consultation RDV',
+            'leRdv' => $leRdv,
         ]);
     }
 
@@ -58,6 +71,27 @@ class PatientController extends AbstractController
             'controller_name' => 'Demande RDV',
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/consult/modifier/{id}', name: 'app_modif_rdv', methods: ['GET', 'POST'])]
+    public function edit(ManagerRegistry $doctrine,Request $request, $id): Response
+    {
+        $repository = $doctrine->getRepository(RDV::class);
+        $em = $doctrine->getManager();
+        $leRdv = $repository->find($id);
+        $form = $this->createForm(RDVType::class, $leRdv);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $adherent = $form->getData();
+            $em->persist($adherent);
+            $em->flush();
+            return $this->redirectToRoute('patient_consult');
+        }
+        return $this->render('patient/consult/modifier.html.twig', array(
+            
+            'leRdv' => $leRdv,
+            'form' => $form->createView(),
+        ));
     }
 
     

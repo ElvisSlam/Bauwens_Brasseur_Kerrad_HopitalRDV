@@ -45,11 +45,19 @@
 											<a class="nav-link active" aria-current="page" href="/">Accueil</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="/login">demande RDV</a>
+											<a class="nav-link" href="/patient/demande">demande RDV</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" href="/register">Voir ses RDV</a>
+											<a class="nav-link" href="/patient/consult">Voir ses RDV</a>
 										</li>
+										{% if app.user %}
+											<span class="navbar-text">
+												{{ app.user.userIdentifier}}     
+											</span>
+											<span class="navbar-text">
+											    <a href="{{ path('app_logout') }}">Logout</a>
+											</span>
+										{% endif %}
 									</ul>
 
 								</div>
@@ -152,20 +160,7 @@
 											<a class="nav-link" href="/register">S'inscrire</a>
 										</li>
 										<li class="nav-item dropdown">
-										<a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-												Menu
-										</a>
-										<ul class="dropdown-menu">
-											<li>
-												<a class="dropdown-item" href="">Action</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="">Another action</a>
-										</li>
-										<li><hr class="dropdown-divider"></li>
-										<li>
-											<a class="dropdown-item" href="/register">S'inscrire</a>
-										</li>
+		
 										</ul>
 										</li>
 
@@ -174,9 +169,6 @@
 										</div>
 										</div>
 									</nav>
-									<div class="example-wrapper">
-										<h1></h1>
-									</div>
 		{% endif %}
 		{% block body %}{% endblock %}
 		{% block javascripts %}
