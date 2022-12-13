@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Changer status d'un RDV{% endblock %}
+
+{% block body %}
+
+<h1>Le statut a été changé avec succès</h1>
+
+<a href="{{path('assistant_validation')}}">
+    <input class="btn btn-primary" type="button" value="Retour à la liste"></input>
+</a>
+
+{% endblock %}

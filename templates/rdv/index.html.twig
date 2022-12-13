@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RDV index{% endblock %}
+
+{% block body %}
+    <h1>RDV index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Heure</th>
+                <th>Duree</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for r_d_v in r_d_vs %}
+            <tr>
+                <td>{{ r_d_v.id }}</td>
+                <td>{{ r_d_v.date ? r_d_v.date|date('Y-m-d') : '' }}</td>
+                <td>{{ r_d_v.heure ? r_d_v.heure|date('H:i:s') : '' }}</td>
+                <td>{{ r_d_v.duree ? r_d_v.duree|date('H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_r_d_v_show', {'id': r_d_v.id}) }}">show</a>
+                    <a href="{{ path('app_r_d_v_edit', {'id': r_d_v.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_r_d_v_new') }}">Create new</a>
+{% endblock %}
