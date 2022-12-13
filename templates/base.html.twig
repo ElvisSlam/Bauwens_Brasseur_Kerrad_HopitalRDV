@@ -104,12 +104,15 @@
 													<a class="nav-link active" aria-current="page" href="/">Accueil</a>
 												</li>
 												<li class="nav-item">
-													<a class="nav-link" href="/login">Assistat</a>
+													<a class="nav-link" href={{path('app_assistant') }}>Menu Assistant</a>
 												</li>
 												<li class="nav-item">
-													<a class="nav-link" href="/register">assistnant</a>
+													<a class="nav-link" href={{path('app_logout')}}>Déconnexion</a>
 												</li>
 											</ul>
+											<span class="navbar-text">
+												Connecté en tant que : {{app.user.email}}
+											</span>
 
 										</div>
 									</div>
