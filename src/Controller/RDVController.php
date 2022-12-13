@@ -48,11 +48,7 @@ class RDVController extends AbstractController
         ]);
     }
 
-<<<<<<< HEAD
-    #[Route('/{id}/edit', name: 'app_r_d_v_edit', methods: ['GET', 'POST'])]
-=======
     #[Route('/{id}/edit', name: 'app_rdv_edit', methods: ['GET', 'POST'])]
->>>>>>> f629d4babee55a522e4bbef25d0596ca468d2344
     public function edit(Request $request, RDV $rDV, RDVRepository $rDVRepository): Response
     {
         $form = $this->createForm(RDVType::class, $rDV);
