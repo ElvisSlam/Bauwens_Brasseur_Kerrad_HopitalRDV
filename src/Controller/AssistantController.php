@@ -54,4 +54,50 @@ class AssistantController extends AbstractController
             'rdvs' => $rdvs,
         ]);
     }
+
+    #[Route('/assistant/validation/{id}', name: 'validation_assistant')]
+    public function validationRDVID(ManagerRegistry $doctrine, int $id): Response
+    {
+
+        $em = $doctrine->getManager();
+
+        $repository = $doctrine->getRepository(RDV::class);
+        $rdv = $repository->find($id);
+
+        $repo = $doctrine->getRepository(Statut::class);
+        $statut = $repo->find(2);
+
+        $rdv->setStatut($statut);
+
+        $em->persist($rdv);
+        $em->flush();
+        return $this->render('assistant/validation/valid.html.twig', [
+            'controller_name' => 'AssistantController',
+            'url' => 'assistant/',
+            'rdvs' => $rdv,
+        ]);
+    }
+
+    #[Route('/assistant/refus/{id}', name: 'refus_assistant')]
+    public function refusRDV(ManagerRegistry $doctrine, int $id): Response
+    {
+
+        $em = $doctrine->getManager();
+
+        $repository = $doctrine->getRepository(RDV::class);
+        $rdv = $repository->find($id);
+
+        $repo = $doctrine->getRepository(Statut::class);
+        $statut = $repo->find(4);
+
+        $rdv->setStatut($statut);
+
+        $em->persist($rdv);
+        $em->flush();
+        return $this->render('assistant/validation/valid.html.twig', [
+            'controller_name' => 'AssistantController',
+            'url' => 'assistant/',
+            'rdvs' => $rdv,
+        ]);
+    }
 }

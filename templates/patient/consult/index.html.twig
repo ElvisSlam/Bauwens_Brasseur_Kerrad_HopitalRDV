@@ -32,11 +32,9 @@
 				</tr>
 			</thead>
 			<tbody>
-			{{app.user.userIdentifier}}
 				{% for patient in lesPatients %}
-					<tr>
-
-						<td class="align-middle" scope="row-4"></td>
+				<tr>
+						<td class="align-middle" scope="row-4">{{patient.getid}}</td>
 						<td class="align-middle" scope="row-4">{{patient.getMedecin.getNom}}</td>
 						<td class="align-middle" scope="row-4">{{patient.getStatut}}</td>
 						<td class="align-middle" scope="row-4">{{patient.date|date('Y-m-d')}}</td>
@@ -46,13 +44,14 @@
 							<div class="row">
 								<div class="col">
 									<div class="d-grid">
-										<a href=>
+										<a href="/patient/consult/{{patient.getid}}">
 											<button type="button" class="btn btn-success">
 												Voir en detail
 											</button>
 										</a>
 									</div>
 								</div>
+							</div>
 							</td>
 						</td>
 					</tr>
@@ -60,4 +59,5 @@
 			</tbody>
 		</li>
 	</tbody>
-</td></tr></td></tbody></li></td>{% endfor %}</tbody></tr></div> </div>{% endblock %}
+</td></tr></td></tbody></li></td>
+					{% endfor %}</tbody></tr></div> </div>{% endblock %}
