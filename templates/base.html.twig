@@ -10,7 +10,7 @@
 		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
-			
+						{{ encore_entry_link_tags('app') }}
 		{% endblock %}
 
 
@@ -83,8 +83,13 @@
 											<li class="nav-item">
 												<a class="nav-link" href="/register">medeicn2</a>
 											</li>
+											<li class="nav-item">
+													<a class="nav-link" href={{path('app_logout')}}>Déconnexion</a>
+												</li>
 										</ul>
-
+										<span class="navbar-text">
+												Connecté en tant que : {{app.user.email}}
+										</span>
 									</div>
 								</div>
 							</nav>
@@ -175,7 +180,7 @@
 		{% endif %}
 		{% block body %}{% endblock %}
 		{% block javascripts %}
-				
+				{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</body>
 </html>
