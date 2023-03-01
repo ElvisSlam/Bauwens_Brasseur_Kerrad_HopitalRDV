@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Assistant;
 use App\Entity\Statut;
 use App\Entity\RDV;
+use App\Form\DateRdvType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bridge\Twig\Extension\RoutingExtension;
 
@@ -33,8 +34,11 @@ class AssistantController extends AbstractController
             ['date' => 'DESC'],
         );
 
+        $form = $this->createForm(DateRdvType::class);
+
         return $this->render('assistant/fonction/consultationrdv.html.twig', [
             'rdvs' => $rdvs,
+            'form' => $form,
         ]);
     }
 

@@ -21,6 +21,9 @@
 		<h1>Liste des rendez-vous :</h1>
 		<br>
 		<p>Veuillez choisir une date :</p>
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		{{ form_end(form) }}
 		<table class="table table-striped">
         <tr>
             <th>Nom du patient</th>

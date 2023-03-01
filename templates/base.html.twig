@@ -83,8 +83,13 @@
 											<li class="nav-item">
 												<a class="nav-link" href="/register">medeicn2</a>
 											</li>
+											<li class="nav-item">
+													<a class="nav-link" href={{path('app_logout')}}>Déconnexion</a>
+												</li>
 										</ul>
-
+										<span class="navbar-text">
+												Connecté en tant que : {{app.user.email}}
+										</span>
 									</div>
 								</div>
 							</nav>
