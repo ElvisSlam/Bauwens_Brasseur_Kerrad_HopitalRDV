@@ -2,11 +2,22 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\IndisponibiliteRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
 
 #[ORM\Entity(repositoryClass: IndisponibiliteRepository::class)]
+#[ApiResource(
+    operations: [
+        new Get(normalizationContext: ['groups' => 'indi:item']),
+        new GetCollection(normalizationContext: ['groups' => 'indi:list'])
+    ]
+)]
 class Indisponibilite
 {
     #[ORM\Id]
@@ -15,9 +26,11 @@ class Indisponibilite
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Groups(['indi:list', 'indi:item'])]
     private ?\DateTimeInterface $dateDebut = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Groups(['indi:list', 'indi:item'])]
     private ?\DateTimeInterface $dateFin = null;
 
     #[ORM\Column(length: 255)]

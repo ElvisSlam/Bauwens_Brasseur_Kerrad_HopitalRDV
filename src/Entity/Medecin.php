@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
+
 use App\Repository\MedecinRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MedecinRepository::class)]
+
 class Medecin extends User
 {
     #[ORM\Id]
