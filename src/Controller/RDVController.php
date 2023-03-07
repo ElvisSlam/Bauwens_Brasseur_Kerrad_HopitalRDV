@@ -6,9 +6,11 @@ use App\Entity\RDV;
 use App\Form\RDVType;
 use App\Repository\RDVRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route('/rdv')]
 class RDVController extends AbstractController
@@ -74,5 +76,23 @@ class RDVController extends AbstractController
         }
 
         return $this->redirectToRoute('app_r_d_v_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+    #[Route('/api/r_d_vs', name: 'app_r_d_vs_api', methods: ['GET'])]
+    public function getRdvs(RDVRepository $rDVRepository , SerializerInterface $serializer): JsonResponse
+    {
+        $RdvList = $rDVRepository->findAll();
+        $jsonRdvList = $serializer->serialize($RdvList, 'json');
+        return new JsonResponse($jsonRdvList, Response::HTTP_OK, [], true);
+
+    }
+
+    #[Route('/api/r_d_vs/{id}', name: 'app_r_d_v_api', methods: ['GET'])]
+    public function getDetailRdvs(RDV $rDV, SerializerInterface $serializer): JsonResponse
+    {
+        $jsonRdv = $serializer->serialize($rDV, 'json');
+        return new JsonResponse($jsonRdv, Response::HTTP_OK, ['accept' => 'json'], true);
+
     }
 }
