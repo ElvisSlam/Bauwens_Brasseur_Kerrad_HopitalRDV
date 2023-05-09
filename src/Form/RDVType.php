@@ -19,7 +19,7 @@ class RDVType extends AbstractType
         $builder
             ->add('date')
             ->add('heure')
-            ->add('duree' , TimeType::class)
+           
             ->add('medecin', EntityType::class,
             array(
                 'class' => User::class,

@@ -24,6 +24,8 @@ use ApiPlatform\Metadata\GetCollection;
 #[ORM\InheritanceType("SINGLE_TABLE")]
 #[ORM\DiscriminatorColumn(name: 'discr', type: 'string')]
 #[ORM\DiscriminatorMap(['medecin' => Medecin::class, 'patient' => Patient::class, 'assistant' => Assistant::class,'admin' => Admin::class])]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
